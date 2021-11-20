@@ -24,6 +24,7 @@ exports.up = async (knex) => {
     knex.schema.createTable(tableNames.cars, (table) => {
       addDefaultColumns(table);
       table.string(columnNames.make, 100).notNullable();
+      table.string(columnNames.makeRU, 100).notNullable();
       table.string(columnNames.model, 100);
       table.string(columnNames.logo, 1500);
     }),

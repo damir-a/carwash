@@ -9,6 +9,7 @@ const columnNames = {
   write: 'write',
   admin: 'admin',
   make: 'make',
+  makeRU: 'makeRU',
   model: 'model',
   logo: 'logo',
   phone: 'phone',

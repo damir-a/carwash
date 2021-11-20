@@ -1,4 +1,6 @@
+const { v4: uuidv4 } = require('uuid');
 const { tableNames } = require('../../src/constants/tableNames');
+const { cars } = require('../../src/constants/cars');
 
 exports.seed = async (knex) => {
   await Promise.all(Object.keys(tableNames).map((name) => knex(name).del()));
@@ -13,4 +15,18 @@ exports.seed = async (knex) => {
   };
 
   await knex(tableNames.users).insert(defaultUser);
+
+  await Promise.all(
+    Object.values(cars).map(
+      (car) =>
+        // eslint-disable-next-line implicit-arrow-linebreak
+        knex(tableNames.cars).insert({
+          uuid: uuidv4(),
+          make: car.en,
+          makeRU: car.ru,
+          logo: car.logo,
+        }),
+      // eslint-disable-next-line function-paren-newline
+    ),
+  );
 };
