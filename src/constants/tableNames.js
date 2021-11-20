@@ -1,0 +1,45 @@
+const columnNames = {
+  ACL: 'ACL',
+  email: 'email',
+  car: 'car',
+  name: 'name',
+  password: 'password',
+  title: 'title',
+  read: 'read',
+  write: 'write',
+  admin: 'admin',
+  make: 'make',
+  model: 'model',
+  logo: 'logo',
+  phone: 'phone',
+  price_id: 'price_id',
+  reg_date: 'reg_date',
+  GRZ: 'GRZ',
+  isJUR: 'isJUR',
+  price_name: 'price_name',
+  service_title: 'service_title',
+  group: 'group',
+  price: 'price',
+  time_to_wash: 'time_to_wash',
+  client_id: 'client_id',
+  description: 'description',
+  order_id: 'order_id',
+  service_id: 'service_id',
+  user_id: 'user_id',
+  car_id: 'car_id',
+};
+
+const tableNames = {
+  users: 'users',
+  ACL: 'ACL',
+  cars: 'cars',
+  clients: 'clients',
+  pricelist: 'pricelist',
+  service_groups: 'service_groups',
+  orders: 'orders',
+};
+
+module.exports = {
+  columnNames,
+  tableNames,
+};

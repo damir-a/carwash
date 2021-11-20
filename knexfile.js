@@ -9,7 +9,7 @@ module.exports = {
       port: 3306,
       user: 'root',
       password: process.env.MYSQL_PASS,
-      database: 'test',
+      database: 'test3',
     },
     migrations: {
       directory: './db/migrations',

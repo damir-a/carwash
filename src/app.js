@@ -8,8 +8,8 @@ const db = require('./database/dbconfig');
 require('dotenv').config();
 
 const middlewares = require('./middlewares');
-const api = require('./api');
 const userApi = require('./api/users/users.routes');
+const ACL = require('./api/ACL/acl.routes');
 
 const app = express();
 Model.knex(db);
@@ -25,8 +25,8 @@ app.get('/', (req, res) => {
   });
 });
 
-app.use('/api/v1', api);
 app.use('/api/v1/users', userApi);
+app.use('/api/v1/acl', ACL);
 
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);
