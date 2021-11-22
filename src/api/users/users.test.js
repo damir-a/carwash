@@ -27,6 +27,23 @@ describe('GET /api/v1/users/1', () => {
   });
 });
 
+describe('POST /api/v1/users/new', () => {
+  it('Should respond with new user', async () => {
+    const responce = await supertest(app)
+      .post('/api/v1/users/new')
+      .send({
+        name: 'New User',
+        email: 'test@test.com',
+        password: '123321123321',
+      })
+      .expect('Content-type', /json/)
+      .expect(200);
+
+    expect(responce.body.id).toBe(2);
+    expect(responce.body.name).toBe('New User');
+  });
+});
+
 afterAll(async () => {
   await db.destroy();
 });
