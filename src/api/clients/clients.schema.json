@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "The client schema",
+  "description": "The client schema comprises the entire JSON document.",
+  "default": {},
+  "examples": [
+    {
+      "title": "Vasya",
+      "price_id": 1,
+      "car": 1,
+      "GRZ": "777",
+      "isJUR": 1
+    }
+  ],
+  "required": ["title", "price_id", "car", "GRZ", "isJUR"],
+  "properties": {
+    "id": {
+      "$id": "#/properties/id",
+      "type": "integer",
+      "title": "Client id",
+      "description": "DB id of Client."
+    },
+    "title": {
+      "$id": "#/properties/title",
+      "type": "string",
+      "title": "Client title",
+      "description": "Client name or organization's title.",
+      "default": "",
+      "examples": ["Vasya"]
+    },
+    "price_id": {
+      "$id": "#/properties/price_id",
+      "type": "integer",
+      "title": "price_id for Client",
+      "description": "DB id of Client's pricelist.",
+      "default": 0,
+      "examples": [1]
+    },
+    "car": {
+      "$id": "#/properties/car",
+      "type": "integer",
+      "title": "Client's car id",
+      "description": "DB id of Client's car.",
+      "default": 0,
+      "examples": [1]
+    },
+    "GRZ": {
+      "$id": "#/properties/GRZ",
+      "type": "string",
+      "title": "Client's license plate",
+      "description": "Client's license plate.",
+      "default": "",
+      "examples": ["777"]
+    },
+    "isJUR": {
+      "$id": "#/properties/isJUR",
+      "type": "integer",
+      "title": "is organization",
+      "description": "A flag to determinate is Claien an organiztion or not.",
+      "default": 0,
+      "examples": [1]
+    },
+    "deleted_at": {
+      "$id": "#/properties/deleted_at",
+      "type": "string",
+      "title": "Client deletion date",
+      "description": "Client deletion date."
+    },
+    "updated_at": {
+      "$id": "#/properties/updated_at",
+      "type": "string",
+      "title": "Client updation date",
+      "description": "Client updation date."
+    }
+  },
+  "additionalProperties": false
+}

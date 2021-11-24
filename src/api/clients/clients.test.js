@@ -35,7 +35,7 @@ describe('POST /api/v1/clients/new', () => {
         title: 'Vasya',
         price_id: 1,
         car: 1,
-        GRZ: 777,
+        GRZ: '777',
         isJUR: 1,
       })
       .expect('Content-type', /json/)
@@ -43,7 +43,7 @@ describe('POST /api/v1/clients/new', () => {
 
     expect(responce.body.id).toBe(2);
     expect(responce.body.title).toBe('Vasya');
-    expect(responce.body.GRZ).toBe(777);
+    expect(responce.body.GRZ).toBe('777');
   });
 });
 

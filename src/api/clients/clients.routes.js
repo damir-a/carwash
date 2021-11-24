@@ -1,5 +1,6 @@
 const express = require('express');
 const Clients = require('./clients.model');
+const { SQLTime } = require('../../lib/sqltime');
 
 const router = express.Router();
 
@@ -33,7 +34,7 @@ router.post('/new', async (req, res, next) => {
 
 router.delete('/', async (req, res, next) => {
   const { id } = req.body;
-  const deleted_at = new Date().toISOString().slice(0, 19).replace('T', ' ');
+  const deleted_at = SQLTime();
   try {
     const deletedClient = await Clients.query()
       .update({ deleted_at })
@@ -49,15 +50,19 @@ router.delete('/', async (req, res, next) => {
 });
 
 router.patch('/', async (req, res, next) => {
-  const newClientData = req.body;
+  const newClientData = {
+    ...req.body,
+    updated_at: SQLTime(),
+  };
   try {
     const updatedClient = await Clients.query()
       .update(newClientData)
       .where('id', newClientData.id);
     res.send({
       rowsAffected: updatedClient,
-      message: `new Client Data ${req.body}`,
+      message: 'Client Data updated',
       updatedClient: newClientData.id,
+      updated_at: newClientData.updated_at,
     });
   } catch (error) {
     next(error);
