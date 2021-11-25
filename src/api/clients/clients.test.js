@@ -5,7 +5,7 @@ const app = require('../../app');
 describe('GET /api/v1/clients', () => {
   it('Should respond with demo client', async () => {
     const responce = await supertest(app)
-      .get('/api/v1/clients/')
+      .get('/api/v1/clients')
       .expect('Content-type', /json/)
       .expect(200);
 
@@ -47,7 +47,7 @@ describe('POST /api/v1/clients/new', () => {
   });
 });
 
-describe('DEL /api/v1/clients/', () => {
+describe('DEL /api/v1/clients', () => {
   it('Should delete existing client', async () => {
     const responce = await supertest(app)
       .delete('/api/v1/clients')

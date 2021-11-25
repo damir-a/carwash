@@ -20,7 +20,7 @@ exports.seed = async (knex) => {
     title: 'Vasya',
     phone: '',
     price_id: 1,
-    GRZ: 777,
+    GRZ: '777',
     isJUR: false,
   };
 
