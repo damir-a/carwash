@@ -48,7 +48,7 @@ router.delete('/', async (req, res, next) => {
     res.send({
       rowsAffected: deletedPricelist,
       message: `deleted_at ${deleted_at}`,
-      clientDeleted: id,
+      id: req.body.id,
     });
   } catch (error) {
     next(error);
@@ -63,8 +63,11 @@ router.patch('/', async (req, res, next) => {
       .where('id', newPricelistData.id);
     res.send({
       rowsAffected: editedPricelist,
-      message: `new Pricelist Data ${req.body}`,
-      userDeleted: newPricelistData.id,
+      message: {
+        text: 'New pricelist data',
+        data: newPricelistData,
+      },
+      id: newPricelistData.id,
     });
   } catch (error) {
     next(error);
