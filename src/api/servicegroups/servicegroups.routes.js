@@ -25,14 +25,10 @@ router.get('/:id', async (req, res, next) => {
 });
 
 router.post('/new', async (req, res, next) => {
-  const newServicegroup = {
-    ...req.body,
-    uuid: uuidv4(),
-  };
   try {
-    const createdServicegroup = await Servicegroups.query().insert(
-      newServicegroup,
-    );
+    const createdServicegroup = await Servicegroups.query().insert({
+      ...req.body,
+    });
     res.send(createdServicegroup);
   } catch (error) {
     next(error);

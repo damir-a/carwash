@@ -34,7 +34,6 @@
       "type": "string",
       "title": "unique id",
       "description": "Unique id for servicegroup.",
-      "default": "",
       "examples": ["514db767-bd17-4b0a-bf90-299a96ba29b8"]
     },
     "id": {
