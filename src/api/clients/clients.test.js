@@ -22,8 +22,8 @@ describe('GET /api/v1/clients/1', () => {
       .expect('Content-type', /json/)
       .expect(200);
 
-    expect(responce.body.id).toBe(1);
-    expect(responce.body.title).toBe('Vasya');
+    expect(responce.body[0].id).toBe(1);
+    expect(responce.body[0].title).toBe('Vasya');
   });
 });
 

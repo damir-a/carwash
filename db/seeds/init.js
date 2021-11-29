@@ -1,4 +1,3 @@
-const { v4: uuidv4 } = require('uuid');
 const { tableNames } = require('../../src/constants/tableNames');
 const { cars } = require('../../src/constants/cars');
 
@@ -7,7 +6,6 @@ exports.seed = async (knex) => {
 
   const defaultUser = {
     deleted_at: null,
-    uuid: uuidv4(),
     name: 'Damir',
     password: '123',
     email: 'damir@celion.ru',
@@ -16,7 +14,6 @@ exports.seed = async (knex) => {
 
   const defaultClient = {
     deleted_at: null,
-    uuid: uuidv4(),
     title: 'Vasya',
     phone: '',
     price_id: 1,
@@ -26,7 +23,6 @@ exports.seed = async (knex) => {
 
   const defaultPricelist = {
     deleted_at: null,
-    uuid: uuidv4(),
     price_name: '',
     service_title: '',
     group: 1,
@@ -50,7 +46,6 @@ exports.seed = async (knex) => {
       (car) =>
         // eslint-disable-next-line implicit-arrow-linebreak
         knex(tableNames.cars).insert({
-          uuid: uuidv4(),
           make: car.en,
           makeRU: car.ru,
           logo: car.logo,

@@ -1,0 +1,99 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "The pricelist schema",
+  "description": "The pricelist schema.",
+  "default": {},
+  "examples": [
+    {
+      "deleted_at": null,
+      "price_name": "Price one",
+      "service_title": "General",
+      "group": 1,
+      "price": 100,
+      "time_to_wash": 15,
+      "client_id": 1
+    }
+  ],
+  "required": [
+    "price_name",
+    "service_title",
+    "group",
+    "price",
+    "time_to_wash",
+    "client_id"
+  ],
+  "properties": {
+    "id": {
+      "$id": "#/properties/id",
+      "type": "integer",
+      "title": "The id of the pricelist",
+      "description": "Date of pricelist deletion.",
+      "examples": [null]
+    },
+    "updated_at": {
+      "$id": "#/properties/updated_at",
+      "type": "string",
+      "title": "Pricelist updation time",
+      "description": "Date of pricelist updated.",
+      "examples": [null]
+    },
+    "deleted_at": {
+      "$id": "#/properties/deleted_at",
+      "type": "null",
+      "title": "The deleted_at schema",
+      "description": "Date of pricelist deletion.",
+      "examples": [null]
+    },
+    "price_name": {
+      "$id": "#/properties/price_name",
+      "type": "string",
+      "title": "The price_name",
+      "description": "Name of the pricelist.",
+      "default": "",
+      "examples": ["Price one"]
+    },
+    "service_title": {
+      "$id": "#/properties/service_title",
+      "type": "string",
+      "title": "Title of the pricelist",
+      "description": "Title of the pricelist.",
+      "default": "",
+      "examples": ["General"]
+    },
+    "group": {
+      "$id": "#/properties/group",
+      "type": "integer",
+      "title": "The group id",
+      "description": "An DB id of the group.",
+      "default": 0,
+      "examples": [1]
+    },
+    "price": {
+      "$id": "#/properties/price",
+      "type": "integer",
+      "title": "The price",
+      "description": "Current price for the service.",
+      "default": 0,
+      "examples": [100]
+    },
+    "time_to_wash": {
+      "$id": "#/properties/time_to_wash",
+      "type": "integer",
+      "title": "The time_to_wash",
+      "description": "Time to complete the service.",
+      "default": 0,
+      "examples": [15]
+    },
+    "client_id": {
+      "$id": "#/properties/client_id",
+      "type": "integer",
+      "title": "client id",
+      "description": "DB id of the client.",
+      "default": 0,
+      "examples": [1]
+    }
+  },
+  "additionalProperties": false
+}

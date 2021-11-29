@@ -1,8 +1,9 @@
 const { Model } = require('objection');
+const { tableNames } = require('../../constants/tableNames');
 
 class ACL extends Model {
   static get tableName() {
-    return 'ACL';
+    return tableNames.ACL;
   }
 }
 

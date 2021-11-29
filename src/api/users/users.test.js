@@ -22,8 +22,8 @@ describe('GET /api/v1/users/1', () => {
       .expect('Content-type', /json/)
       .expect(200);
 
-    expect(responce.body.id).toBe(1);
-    expect(responce.body.name).toBe('Damir');
+    expect(responce.body[0].id).toBe(1);
+    expect(responce.body[0].name).toBe('Damir');
   });
 });
 
@@ -35,6 +35,7 @@ describe('POST /api/v1/users/new', () => {
         name: 'New User',
         email: 'test@test.com',
         password: '123321123321',
+        ACL: 1,
       })
       .expect('Content-type', /json/)
       .expect(200);
