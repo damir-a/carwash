@@ -49,6 +49,12 @@
       "type": "string",
       "title": "Time of the servicegroup deletion",
       "description": "Time when servicegroup deleted."
+    },
+    "updated_at": {
+      "$id": "#/properties/updated_at",
+      "type": "string",
+      "title": "Time of the servicegroup updated",
+      "description": "Time when servicegroup updated."
     }
   },
   "additionalProperties": false

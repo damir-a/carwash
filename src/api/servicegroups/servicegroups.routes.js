@@ -1,5 +1,4 @@
 const express = require('express');
-const { v4: uuidv4 } = require('uuid');
 const { SQLTime } = require('../../lib/sqltime');
 const Servicegroups = require('./servicegroups.model');
 
@@ -26,10 +25,8 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/new', async (req, res, next) => {
   try {
-    const createdServicegroup = await Servicegroups.query().insert({
-      ...req.body,
-    });
-    res.send(createdServicegroup);
+    const result = await Servicegroups.query().insert(req.body);
+    res.send(result);
   } catch (error) {
     next(error);
   }
@@ -39,13 +36,13 @@ router.delete('/', async (req, res, next) => {
   const { id } = req.body;
   const deleted_at = SQLTime();
   try {
-    const deletedServiceGroup = await Servicegroups.query()
+    const result = await Servicegroups.query()
       .patch({ deleted_at })
       .where('id', id);
     res.send({
-      rowsAffected: deletedServiceGroup,
+      rowsAffected: result,
       message: `deleted_at ${deleted_at}`,
-      id: req.body.id,
+      id,
     });
   } catch (error) {
     next(error);
@@ -53,18 +50,21 @@ router.delete('/', async (req, res, next) => {
 });
 
 router.patch('/', async (req, res, next) => {
-  const newServiceGroup = req.body;
+  const newData = {
+    ...req.body,
+    updated_at: SQLTime(),
+  };
   try {
-    const editedServiceGroup = await Servicegroups.query()
-      .patch(newServiceGroup)
-      .where('id', newServiceGroup.id);
+    const result = await Servicegroups.query()
+      .patch(newData)
+      .where('id', newData.id);
     res.send({
-      rowsAffected: editedServiceGroup,
+      rowsAffected: result,
       message: {
         text: 'New servicegroup data',
-        data: newServiceGroup,
+        data: newData,
       },
-      id: newServiceGroup.id,
+      id: newData.id,
     });
   } catch (error) {
     next(error);

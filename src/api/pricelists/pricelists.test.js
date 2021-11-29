@@ -1,5 +1,4 @@
 const supertest = require('supertest');
-const { v4: uuidv4 } = require('uuid');
 const db = require('../../database/dbconfig');
 const app = require('../../app');
 
@@ -29,7 +28,6 @@ describe('POST /api/v1/pricelists/new', () => {
     const responce = await supertest(app)
       .post('/api/v1/pricelists/new')
       .send({
-        uuid: uuidv4(),
         price_name: 'Test price',
         service_title: 'Test title',
         group: 1,

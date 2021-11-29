@@ -16,8 +16,8 @@ router.get('/', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   try {
     const { id } = req.params;
-    const client = await Clients.query().where('id', id);
-    res.send(client[0]);
+    const result = await Clients.query().where('id', id);
+    res.send(result);
   } catch (error) {
     next(error);
   }
@@ -25,8 +25,8 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/new', async (req, res, next) => {
   try {
-    const newClient = await Clients.query().insert(req.body);
-    res.send(newClient);
+    const result = await Clients.query().insert(req.body);
+    res.send(result);
   } catch (error) {
     next(error);
   }
@@ -36,13 +36,11 @@ router.delete('/', async (req, res, next) => {
   const { id } = req.body;
   const deleted_at = SQLTime();
   try {
-    const deletedClient = await Clients.query()
-      .update({ deleted_at })
-      .where('id', id);
+    const result = await Clients.query().patch({ deleted_at }).where('id', id);
     res.send({
-      rowsAffected: deletedClient,
+      rowsAffected: result,
       message: `deleted_at ${deleted_at}`,
-      clientDeleted: id,
+      id,
     });
   } catch (error) {
     next(error);
@@ -50,19 +48,19 @@ router.delete('/', async (req, res, next) => {
 });
 
 router.patch('/', async (req, res, next) => {
-  const newClientData = {
+  const newData = {
     ...req.body,
     updated_at: SQLTime(),
   };
   try {
-    const updatedClient = await Clients.query()
-      .update(newClientData)
-      .where('id', newClientData.id);
+    const result = await Clients.query().patch(newData).where('id', newData.id);
     res.send({
-      rowsAffected: updatedClient,
-      message: 'Client Data updated',
-      updatedClient: newClientData.id,
-      updated_at: newClientData.updated_at,
+      rowsAffected: result,
+      message: {
+        text: 'New Client data',
+        data: newData,
+      },
+      id: newData.id,
     });
   } catch (error) {
     next(error);

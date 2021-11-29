@@ -1,13 +1,13 @@
 const express = require('express');
-const { v4: uuidv4 } = require('uuid');
+const { SQLTime } = require('../../lib/sqltime');
 const Users = require('./users.model');
 
 const router = express.Router();
 
 router.get('/', async (req, res, next) => {
   try {
-    const data = await Users.query();
-    res.send(data);
+    const result = await Users.query();
+    res.send(result);
   } catch (error) {
     next(error);
   }
@@ -16,8 +16,8 @@ router.get('/', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   try {
     const { id } = req.params;
-    const data = await Users.query().where('id', id);
-    res.send(data[0]);
+    const result = await Users.query().where('id', id);
+    res.send(result);
   } catch (error) {
     next(error);
   }
@@ -25,34 +25,26 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/new', async (req, res, next) => {
   try {
-    const { name, email, password } = req.body;
-    const uuid = uuidv4();
-    const newUser = {
-      name,
-      email,
-      password,
-      uuid,
-    };
-    const createdUser = await Users.query().insert(newUser);
-    res.send(createdUser);
+    const result = await Users.query().insert(req.body);
+    res.send(result);
   } catch (error) {
     next(error);
   }
 });
 
 router.delete('/', async (req, res, next) => {
+  const { id } = req.body;
+  const deleted_at = SQLTime();
   try {
-    const { id } = req.body;
-    const deleted_at = new Date().toISOString().slice(0, 19).replace('T', ' ');
-    const deleted = await Users.query()
-      .update({
+    const result = await Users.query()
+      .patch({
         deleted_at,
       })
       .where('id', id);
     res.send({
-      rowsAffected: deleted,
+      rowsAffected: result,
       message: `deleted_at ${deleted_at}`,
-      userDeleted: id,
+      id,
     });
   } catch (error) {
     next(error);
@@ -60,17 +52,21 @@ router.delete('/', async (req, res, next) => {
 });
 
 router.patch('/', async (req, res, next) => {
+  const newData = {
+    ...req.body,
+    updated_at: SQLTime(),
+  };
   try {
-    // eslint-disable-next-line object-curly-newline
-    const { id, name, email, password, ACL } = req.body;
-    const userUpdated = await Users.query()
-      // eslint-disable-next-line object-curly-newline
-      .update({ name, email, password, ACL })
-      .where('id', id);
+    const result = await Users.query()
+      .patch({ newData })
+      .where('id', newData.id);
     res.send({
-      rowsAffected: userUpdated,
-      message: `new User Data ${req.body}`,
-      userDeleted: id,
+      rowsAffected: result,
+      message: {
+        text: 'new user Data',
+        data: newData,
+      },
+      id: newData.id,
     });
   } catch (error) {
     next(error);
