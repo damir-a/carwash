@@ -35,9 +35,15 @@ exports.seed = async (knex) => {
     client_id: 1,
   };
 
+  const defaultServicegroup = {
+    title: 'Эконом',
+    description: 'Ниссан микра и другие',
+  };
+
   await knex(tableNames.users).insert(defaultUser);
   await knex(tableNames.clients).insert(defaultClient);
   await knex(tableNames.pricelist).insert(defaultPricelist);
+  await knex(tableNames.service_groups).insert(defaultServicegroup);
 
   await Promise.all(
     Object.values(cars).map(
