@@ -20,12 +20,24 @@ exports.seed = async (knex) => {
     title: 'Vasya',
     phone: '',
     price_id: 1,
-    GRZ: 777,
+    GRZ: '777',
     isJUR: false,
+  };
+
+  const defaultPricelist = {
+    deleted_at: null,
+    uuid: uuidv4(),
+    price_name: '',
+    service_title: '',
+    group: 1,
+    price: 100,
+    time_to_wash: 15,
+    client_id: 1,
   };
 
   await knex(tableNames.users).insert(defaultUser);
   await knex(tableNames.clients).insert(defaultClient);
+  await knex(tableNames.pricelist).insert(defaultPricelist);
 
   await Promise.all(
     Object.values(cars).map(
