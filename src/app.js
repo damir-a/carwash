@@ -13,6 +13,7 @@ const ACL = require('./api/ACL/acl.routes');
 const clients = require('./api/clients/clients.routes');
 const pricelists = require('./api/pricelists/pricelists.routes');
 const servicegroups = require('./api/servicegroups/servicegroups.routes');
+const acl = require('./api/ACL/acl.routes');
 
 const app = express();
 Model.knex(db);
@@ -33,6 +34,7 @@ app.use('/api/v1/acl', ACL);
 app.use('/api/v1/clients', clients);
 app.use('/api/v1/pricelists', pricelists);
 app.use('/api/v1/servicegroups', servicegroups);
+app.use('/api/v1/acl', acl);
 
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);
