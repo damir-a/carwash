@@ -36,10 +36,18 @@ exports.seed = async (knex) => {
     description: 'Ниссан микра и другие',
   };
 
+  const defaultACL = {
+    title: 'Default',
+    write: 1,
+    read: 1,
+    admin: 0,
+  };
+
   await knex(tableNames.users).insert(defaultUser);
   await knex(tableNames.clients).insert(defaultClient);
   await knex(tableNames.pricelist).insert(defaultPricelist);
   await knex(tableNames.service_groups).insert(defaultServicegroup);
+  await knex(tableNames.ACL).insert(defaultACL);
 
   await Promise.all(
     Object.values(cars).map(

@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "The ACL schema",
+  "description": "The ACL schema.",
+  "default": {},
+  "examples": [
+    {
+      "title": "New Title",
+      "read": 1,
+      "write": 1,
+      "admin": 1
+    }
+  ],
+  "required": ["title", "read", "write", "admin"],
+  "properties": {
+    "title": {
+      "$id": "#/properties/title",
+      "type": "string",
+      "title": "The title of ACL",
+      "description": "Title of ACL.",
+      "default": "<default>",
+      "examples": ["New Title"]
+    },
+    "read": {
+      "$id": "#/properties/read",
+      "type": "integer",
+      "title": "Is reading allowed",
+      "description": "ACL for reading.",
+      "default": 0,
+      "examples": [1]
+    },
+    "write": {
+      "$id": "#/properties/write",
+      "type": "integer",
+      "title": "Is writing allowed",
+      "description": "ACL for writing.",
+      "default": 0,
+      "examples": [1]
+    },
+    "admin": {
+      "$id": "#/properties/admin",
+      "type": "integer",
+      "title": "Is admin",
+      "description": "Admin.",
+      "default": 0,
+      "examples": [1]
+    },
+    "id": {
+      "$id": "#/properties/id",
+      "type": "integer",
+      "title": "DB id of ACL",
+      "description": "id of ACL.",
+      "default": 0,
+      "examples": [1]
+    },
+    "deleted_at": {
+      "$id": "#/properties/deleted_at",
+      "type": "string",
+      "title": "Date of the ACL deletion",
+      "description": "ACL deletion time."
+    },
+    "updated_at": {
+      "$id": "#/properties/updated_at",
+      "type": "string",
+      "title": "Date of the ACL updation",
+      "description": "ACL updation time."
+    }
+  },
+  "additionalProperties": false
+}
