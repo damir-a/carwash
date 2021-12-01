@@ -43,11 +43,20 @@ exports.seed = async (knex) => {
     admin: 0,
   };
 
+  const defaultOrder = {
+    client_id: 1,
+    order_id: 1,
+    service_id: 1,
+    user_id: 1,
+    car_id: 1,
+  };
+
   await knex(tableNames.users).insert(defaultUser);
   await knex(tableNames.clients).insert(defaultClient);
   await knex(tableNames.pricelist).insert(defaultPricelist);
   await knex(tableNames.service_groups).insert(defaultServicegroup);
   await knex(tableNames.ACL).insert(defaultACL);
+  await knex(tableNames.orders).insert(defaultOrder);
 
   await Promise.all(
     Object.values(cars).map(
