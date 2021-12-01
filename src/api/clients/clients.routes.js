@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/', async (req, res, next) => {
   try {
-    const clients = await Clients.query();
+    const clients = await Clients.query().where('deleted_at', null);
     res.send(clients);
   } catch (error) {
     next(error);
