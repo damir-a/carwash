@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "The users schema",
+  "description": "The users schema.",
+  "default": {},
+  "examples": [
+    {
+      "email": "test@example.com",
+      "name": "User",
+      "password": "123",
+      "ACL": 1,
+      "id": 1,
+      "updated_at": "01-01-2021",
+      "deleted_at": "01-01-2021"
+    }
+  ],
+  "required": ["email", "name", "password", "ACL"],
+  "properties": {
+    "email": {
+      "$id": "#/properties/email",
+      "type": "string",
+      "title": "The email schema",
+      "description": "Users email.",
+      "default": "test@example.com",
+      "examples": ["test@example.com"]
+    },
+    "name": {
+      "$id": "#/properties/name",
+      "type": "string",
+      "title": "User name",
+      "description": "Users name.",
+      "default": "Demo",
+      "examples": ["User"]
+    },
+    "password": {
+      "$id": "#/properties/password",
+      "type": "string",
+      "title": "User password",
+      "description": "Users password."
+    },
+    "ACL": {
+      "$id": "#/properties/ACL",
+      "type": "integer",
+      "title": "Users ACL",
+      "description": "Users ACL.",
+      "default": 0,
+      "examples": [1]
+    },
+    "id": {
+      "$id": "#/properties/id",
+      "type": "integer",
+      "title": "DB id",
+      "description": "DB id."
+    },
+    "updated_at": {
+      "$id": "#/properties/updated_at",
+      "type": "string",
+      "title": "Users updation time",
+      "description": "Users updation time."
+    },
+    "deleted_at": {
+      "$id": "#/properties/deleted_at",
+      "type": "string",
+      "title": "Users deletion time",
+      "description": "Users deletion time."
+    }
+  },
+  "additionalProperties": false
+}
