@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/', async (req, res, next) => {
   try {
-    const result = await acl.query();
+    const result = await acl.query().where('deleted_at', null);
     res.send(result);
   } catch (error) {
     next(error);

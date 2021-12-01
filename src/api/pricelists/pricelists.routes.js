@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/', async (req, res, next) => {
   try {
-    const result = await Pricelists.query();
+    const result = await Pricelists.query().where('deleted_at', null);
     res.send(result);
   } catch (error) {
     next(error);
