@@ -19,15 +19,18 @@
   },
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "helmet": "^4.6.0",
+    "jsonwebtoken": "^8.5.1",
     "knex": "^0.21.21",
     "morgan": "^1.10.0",
     "mysql2": "^2.3.2",
     "objection": "^2.2.17",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "eslint": "^7.28.0",

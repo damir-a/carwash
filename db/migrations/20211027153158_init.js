@@ -11,8 +11,8 @@ exports.up = async (knex) => {
       addDefaultColumns(knex, table);
       table.string(columnNames.email, 55).notNullable().unique();
       table.string(columnNames.name, 255).notNullable();
-      table.string(columnNames.password, 55).notNullable();
-      table.integer(columnNames.ACL);
+      table.string(columnNames.password, 255).notNullable();
+      table.integer(columnNames.ACL).defaultTo(0);
     }),
     knex.schema.createTable(tableNames.ACL, (table) => {
       addDefaultColumns(knex, table);

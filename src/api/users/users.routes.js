@@ -1,4 +1,5 @@
 const express = require('express');
+const bcrypt = require('bcrypt');
 const { SQLTime } = require('../../lib/sqltime');
 const Users = require('./users.model');
 
@@ -24,8 +25,13 @@ router.get('/:id', async (req, res, next) => {
 });
 
 router.post('/new', async (req, res, next) => {
+  const password = await bcrypt.hash(req.body.password, 12);
+  const newUser = {
+    ...req.body,
+    password,
+  };
   try {
-    const result = await Users.query().insert(req.body);
+    const result = await Users.query().insert(newUser);
     res.send(result);
   } catch (error) {
     next(error);
