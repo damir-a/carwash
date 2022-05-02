@@ -23,7 +23,7 @@ exports.seed = async (knex) => {
 
   const defaultPricelist = {
     deleted_at: null,
-    price_name: '',
+    price_id: 1,
     service_title: '',
     group: 1,
     price: 100,
@@ -50,10 +50,15 @@ exports.seed = async (knex) => {
     user_id: 1,
     car_id: 1,
   };
+  const defaultPriceGroup = {
+    title: 'Физлица',
+    description: 'Прайс для физлиц',
+  };
 
   await knex(tableNames.users).insert(defaultUser);
   await knex(tableNames.clients).insert(defaultClient);
   await knex(tableNames.service_groups).insert(defaultServicegroup);
+  await knex(tableNames.price_groups).insert(defaultPriceGroup);
   await knex(tableNames.pricelist).insert(defaultPricelist);
   await knex(tableNames.ACL).insert(defaultACL);
   await knex(tableNames.orders).insert(defaultOrder);

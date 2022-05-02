@@ -28,7 +28,7 @@ describe('POST /api/v1/pricelists/new', () => {
     const responce = await supertest(app)
       .post('/api/v1/pricelists/new')
       .send({
-        price_name: 'Test price',
+        price_id: 1,
         service_title: 'Test title',
         group: 1,
         price: 100,
@@ -49,13 +49,13 @@ describe('Put /api/v1/pricelists', () => {
       .patch('/api/v1/pricelists')
       .send({
         id: 1,
-        price_name: 'Test price 2',
+        service_title: 'Test price 2',
       })
       .expect('Content-type', /json/)
       .expect(200);
     expect(responce.body.length).not.toBeNull();
     expect(responce.body.id).toBe(1);
-    expect(responce.body.message.data.price_name).toBe('Test price 2');
+    expect(responce.body.message.data.service_title).toBe('Test price 2');
   });
 });
 

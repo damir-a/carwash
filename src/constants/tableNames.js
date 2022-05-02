@@ -38,6 +38,7 @@ const tableNames = {
   pricelist: 'pricelist',
   service_groups: 'service_groups',
   orders: 'orders',
+  price_groups: 'price_groups',
 };
 
 module.exports = {

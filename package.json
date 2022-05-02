@@ -9,7 +9,8 @@
     "lint": "eslint --fix src",
     "test": "jest",
     "up": "knex migrate:latest",
-    "down": "knex migrate:rollback"
+    "down": "knex migrate:rollback",
+    "seed": "knex seed:run"
   },
   "keywords": [],
   "author": "CJ R. <cj@null.computer> (https://w3cj.now.sh)",
