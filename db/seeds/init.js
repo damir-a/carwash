@@ -53,21 +53,18 @@ exports.seed = async (knex) => {
 
   await knex(tableNames.users).insert(defaultUser);
   await knex(tableNames.clients).insert(defaultClient);
-  await knex(tableNames.pricelist).insert(defaultPricelist);
   await knex(tableNames.service_groups).insert(defaultServicegroup);
+  await knex(tableNames.pricelist).insert(defaultPricelist);
   await knex(tableNames.ACL).insert(defaultACL);
   await knex(tableNames.orders).insert(defaultOrder);
 
   await Promise.all(
     Object.values(cars).map(
-      (car) =>
-        // eslint-disable-next-line implicit-arrow-linebreak
-        knex(tableNames.cars).insert({
-          make: car.en,
-          makeRU: car.ru,
-          logo: car.logo,
-        }),
-      // eslint-disable-next-line function-paren-newline
+      (car) => knex(tableNames.cars).insert({
+        make: car.en,
+        makeRU: car.ru,
+        logo: car.logo,
+      }),
     ),
   );
 };

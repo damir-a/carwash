@@ -11,8 +11,8 @@ exports.up = async (knex) => {
       addDefaultColumns(knex, table);
       table.string(columnNames.email, 55).notNullable().unique();
       table.string(columnNames.name, 255).notNullable();
-      table.string(columnNames.password, 55).notNullable();
-      table.integer(columnNames.ACL);
+      table.string(columnNames.password, 255).notNullable();
+      table.integer(columnNames.ACL).defaultTo(0);
     }),
     knex.schema.createTable(tableNames.ACL, (table) => {
       addDefaultColumns(knex, table);
@@ -42,7 +42,8 @@ exports.up = async (knex) => {
       addDefaultColumns(knex, table);
       table.string(columnNames.price_name, 255);
       table.string(columnNames.service_title, 255);
-      table.integer(columnNames.group);
+      table.integer(columnNames.group, 10).notNullable().unsigned().references('id')
+        .inTable(tableNames.service_groups);
       table.integer(columnNames.price);
       table.time(columnNames.time_to_wash);
       table.integer(columnNames.client_id);

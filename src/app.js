@@ -15,13 +15,17 @@ const pricelists = require('./api/pricelists/pricelists.routes');
 const servicegroups = require('./api/servicegroups/servicegroups.routes');
 const acl = require('./api/ACL/acl.routes');
 const orders = require('./api/orders/orders.routes');
+const auth = require('./api/auth/auth');
+const login = require('./api/login');
 
 const app = express();
 Model.knex(db);
 
 app.use(morgan('dev'));
 app.use(helmet());
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:8080'
+}));
 app.use(express.json());
 
 app.get('/', (req, res) => {
@@ -29,7 +33,8 @@ app.get('/', (req, res) => {
     message: '🦄🌈✨👋🌎🌍🌏✨🌈🦄',
   });
 });
-
+app.use('/api/v1/login', login);
+app.use(auth);
 app.use('/api/v1/users', userApi);
 app.use('/api/v1/acl', ACL);
 app.use('/api/v1/clients', clients);
