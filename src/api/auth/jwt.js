@@ -16,4 +16,12 @@ function sign(payload) {
   });
 }
 
-module.exports = { sign };
+function check(token) {
+  return new Promise((resolve, reject) => {
+    jwt.verify(token, process.env.JWT_SECRET, (err) => {
+      if (err) return reject(err);
+      return resolve(token);
+    });
+  });
+}
+module.exports = { sign, check };

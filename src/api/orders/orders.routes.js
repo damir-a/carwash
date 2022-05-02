@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/', async (req, res, next) => {
   try {
-    const result = await Orders.query().where('deleted_at', null);
+    const result = await Orders.query().where('deleted_at', null).andWhereRaw('DATE(created_at) = CURDATE()');
     res.send(result);
   } catch (error) {
     next(error);

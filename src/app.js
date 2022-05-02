@@ -23,7 +23,9 @@ Model.knex(db);
 
 app.use(morgan('dev'));
 app.use(helmet());
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:8080'
+}));
 app.use(express.json());
 
 app.get('/', (req, res) => {

@@ -4,11 +4,14 @@ const jwt = require('jsonwebtoken');
 const router = express.Router();
 router.get('*', (req, res, next) => {
   const { token } = req.headers;
-  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+  jwt.verify(token, process.env.JWT_SECRET, (err) => {
     if (err) {
-      res.send(401);
-    } else {
-      res.send(decoded);
+      // res.sendStatus(401);
+      res.send({
+        token,
+        msg: err,
+        txt: 'NOT_OK',
+      });
     }
   });
   next();
@@ -16,11 +19,9 @@ router.get('*', (req, res, next) => {
 
 router.post('*', (req, res, next) => {
   const { token } = req.headers;
-  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+  jwt.verify(token, process.env.JWT_SECRET, (err) => {
     if (err) {
-      res.send(401);
-    } else {
-      res.send(decoded);
+      res.sendStatus(401);
     }
   });
   next();
