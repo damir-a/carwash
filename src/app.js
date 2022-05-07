@@ -35,7 +35,7 @@ app.get('/', (req, res) => {
   });
 });
 app.use('/api/v1/login', login);
-// app.use(auth);
+app.use(auth);
 app.use('/api/v1/users', userApi);
 app.use('/api/v1/acl', ACL);
 app.use('/api/v1/clients', clients);
