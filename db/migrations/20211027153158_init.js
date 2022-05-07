@@ -40,7 +40,8 @@ exports.up = async (knex) => {
     }),
     knex.schema.createTable(tableNames.pricelist, (table) => {
       addDefaultColumns(knex, table);
-      table.string(columnNames.price_name, 255);
+      table.integer(columnNames.price_id).notNullable().unsigned().references('id')
+        .inTable(tableNames.price_groups);
       table.string(columnNames.service_title, 255);
       table.integer(columnNames.group, 10).notNullable().unsigned().references('id')
         .inTable(tableNames.service_groups);
@@ -60,6 +61,11 @@ exports.up = async (knex) => {
       table.integer(columnNames.service_id).notNullable();
       table.integer(columnNames.user_id).notNullable();
       table.integer(columnNames.car_id).notNullable();
+    }),
+    knex.schema.createTable(tableNames.price_groups, (table) => {
+      addDefaultColumns(knex, table);
+      table.string(columnNames.title);
+      table.string(columnNames.description);
     }),
   ]);
 };

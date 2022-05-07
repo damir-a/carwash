@@ -2,10 +2,10 @@ const supertest = require('supertest');
 const db = require('../../database/dbconfig');
 const app = require('../../app');
 
-describe('GET /api/v1/orders', () => {
-  it('Should respond with demo order', async () => {
+describe('GET /api/v1/pricegroups', () => {
+  it('Should respond with demo price_group', async () => {
     const responce = await supertest(app)
-      .get('/api/v1/orders')
+      .get('/api/v1/pricegroups')
       .expect('Content-type', /json/)
       .expect(200);
 
@@ -15,10 +15,10 @@ describe('GET /api/v1/orders', () => {
   });
 });
 
-describe('GET /api/v1/orders/1', () => {
+describe('GET /api/v1/pricegroups/1', () => {
   it('Should respond with demo order 1', async () => {
     const responce = await supertest(app)
-      .get('/api/v1/orders/1')
+      .get('/api/v1/pricegroups/1')
       .expect('Content-type', /json/)
       .expect(200);
 
@@ -26,28 +26,25 @@ describe('GET /api/v1/orders/1', () => {
   });
 });
 
-describe('POST /api/v1/orders/new', () => {
+describe('POST /api/v1/pricegroups/new', () => {
   it('Should respond with new order ', async () => {
     const responce = await supertest(app)
-      .post('/api/v1/orders/new')
+      .post('/api/v1/pricegroups/new')
       .send({
-        client_id: 1,
-        order_id: 1,
-        service_id: 1,
-        user_id: 1,
-        car_id: 1,
+        title: 'price_group from test',
+        description: 'price_group_description from test'
       })
       .expect('Content-type', /json/)
       .expect(200);
 
-    expect(responce.body.id).toBeGreaterThan(0);
+    expect(responce.body.id).toBeGreaterThan(1);
   });
 });
 
-describe('DEL /api/v1/orders', () => {
+describe('DEL /api/v1/pricegroups', () => {
   it('Should delete existing order', async () => {
     const responce = await supertest(app)
-      .delete('/api/v1/orders')
+      .delete('/api/v1/pricegroups')
       .send({
         id: 1,
       })
@@ -58,19 +55,19 @@ describe('DEL /api/v1/orders', () => {
   });
 });
 
-describe('PATCH /api/v1/orders', () => {
+describe('PATCH /api/v1/pricegroups', () => {
   it('Should update existing order', async () => {
     const responce = await supertest(app)
-      .patch('/api/v1/orders')
+      .patch('/api/v1/pricegroups')
       .send({
         id: 1,
-        order_id: 100,
+        title: 'new title'
       })
       .expect('Content-type', /json/)
       .expect(200);
 
     expect(responce.body.rowsAffected).toBe(1);
-    expect(responce.body.message.data.order_id).toBe(100);
+    expect(responce.body.message.data.title).toBe('new title');
   });
 });
 
