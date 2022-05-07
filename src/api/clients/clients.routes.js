@@ -13,6 +13,20 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+router.get('/info', async (req, res, next) => {
+  try {
+    const info = await Clients.query()
+      .select('c.id', 'c.title', 'c.phone', 'c.reg_date', 'c.GRZ', 'c.isJUR', 'pg.title AS pg_title', 'car.make as car')
+      .from('clients AS c')
+      .join('price_groups as pg', 'pg.id', '=', 'c.price_id')
+      .join('cars as car', 'car.id', '=', 'c.car')
+      .where('c.deleted_at', null);
+    res.send(info);
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.get('/:id', async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -26,7 +40,12 @@ router.get('/:id', async (req, res, next) => {
 router.post('/new', async (req, res, next) => {
   try {
     const result = await Clients.query().insert(req.body);
-    res.send(result);
+    const newClient = {
+      ...result,
+      status: 200,
+      code: 'CLIENT_CREATED_OK',
+    };
+    res.send(newClient);
   } catch (error) {
     next(error);
   }

@@ -7,8 +7,8 @@ exports.seed = async (knex) => {
   const defaultUser = {
     deleted_at: null,
     name: 'Damir',
-    password: '123',
-    email: 'damir@celion.ru',
+    password: '$2b$12$Xe/A27tfhYdPabiuXF5/2.FNq43qk7UHjalDniacDMn/Ju.0mvFbu',
+    email: 'damir3@example.com',
     ACL: 1,
   };
 

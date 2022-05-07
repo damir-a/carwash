@@ -14,7 +14,13 @@
       "isJUR": 1
     }
   ],
-  "required": ["title", "price_id", "car", "GRZ", "isJUR"],
+  "required": [
+    "title",
+    "price_id",
+    "car",
+    "GRZ",
+    "isJUR"
+  ],
   "properties": {
     "id": {
       "$id": "#/properties/id",
@@ -28,7 +34,9 @@
       "title": "Client title",
       "description": "Client name or organization's title.",
       "default": "",
-      "examples": ["Vasya"]
+      "examples": [
+        "Vasya"
+      ]
     },
     "price_id": {
       "$id": "#/properties/price_id",
@@ -36,7 +44,9 @@
       "title": "price_id for Client",
       "description": "DB id of Client's pricelist.",
       "default": 0,
-      "examples": [1]
+      "examples": [
+        1
+      ]
     },
     "car": {
       "$id": "#/properties/car",
@@ -44,7 +54,9 @@
       "title": "Client's car id",
       "description": "DB id of Client's car.",
       "default": 0,
-      "examples": [1]
+      "examples": [
+        1
+      ]
     },
     "GRZ": {
       "$id": "#/properties/GRZ",
@@ -52,7 +64,9 @@
       "title": "Client's license plate",
       "description": "Client's license plate.",
       "default": "",
-      "examples": ["777"]
+      "examples": [
+        "777"
+      ]
     },
     "isJUR": {
       "$id": "#/properties/isJUR",
@@ -60,7 +74,9 @@
       "title": "is organization",
       "description": "A flag to determinate is Claien an organiztion or not.",
       "default": 0,
-      "examples": [1]
+      "examples": [
+        1
+      ]
     },
     "deleted_at": {
       "$id": "#/properties/deleted_at",
@@ -73,6 +89,12 @@
       "type": "string",
       "title": "Client updation date",
       "description": "Client updation date."
+    },
+    "phone": {
+      "$id": "#/properties/phone",
+      "type": "string",
+      "title": "Client phone",
+      "description": "Client phone."
     }
   },
   "additionalProperties": false
