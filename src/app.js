@@ -18,6 +18,7 @@ const orders = require('./api/orders/orders.routes');
 const auth = require('./api/auth/auth');
 const login = require('./api/login');
 const pricegroups = require('./api/pricegroups/pricegroups.routes');
+const cars = require('./api/cars/cars.routes');
 
 const app = express();
 Model.knex(db);
@@ -44,6 +45,7 @@ app.use('/api/v1/servicegroups', servicegroups);
 app.use('/api/v1/acl', acl);
 app.use('/api/v1/orders', orders);
 app.use('/api/v1/pricegroups', pricegroups);
+app.use('/api/v1/cars', cars);
 
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);
